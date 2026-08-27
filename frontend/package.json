@@ -9,7 +9,7 @@
         "lint": "pnpm -r lint"
     },
     "devDependencies": {
-        "typescript": "^5.0.0",
-        "vue-eslint-parser": "^10.2.0"
+        "typescript": "^7.0.2",
+        "vue-eslint-parser": "^10.4.1"
     }
 }
