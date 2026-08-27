@@ -68,7 +68,7 @@ slip10_ed25519 = "0.1"
 
 # Solana SDK — transaction building, instruction construction, ComputeBudget
 # default-features = false excludes keypair/signer/seed-phrase (we use our own TransactionSigner)
-solana-sdk = { version = "2", default-features = false }
+solana-sdk = { version = "4", default-features = false }
 spl-token = { version = "9", default-features = false, features = ["no-entrypoint"] }
 spl-associated-token-account = { version = "8", default-features = false, features = ["no-entrypoint"] }
 bincode = "1"
