@@ -220,7 +220,7 @@ export default function Home() {
                     >
                         IronixPay
                     </a>
-                    {" "}— 1% fee, 7 chains, 1 API
+                    {" "}— 0.5% fee, 7 chains, 1 API
                 </p>
                 <p style={{ marginTop: 8, fontSize: 12, color: "#444" }}>
                     This is a demo using the Sandbox environment. No real payments.

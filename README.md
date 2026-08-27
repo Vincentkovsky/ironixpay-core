@@ -77,8 +77,8 @@ repository.
 
 ### Prerequisites
 
-- Rust 1.93 or newer
-- Node.js 22 or newer
+- Rust 1.94.1 or newer
+- Node.js 22.14 or newer
 - pnpm 10.29.2
 - Docker with Docker Compose
 
