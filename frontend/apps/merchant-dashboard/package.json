@@ -48,7 +48,7 @@
     "vite-plugin-pwa": "^1.2.0",
     "vite-plugin-vue-devtools": "^8.0.5",
     "vite-svg-loader": "^3.6.0",
-    "vue-tsc": "^3.2.4",
+    "vue-tsc": "^3.3.11",
     "workbox-window": "^7.4.0"
   },
   "engines": {
