@@ -78,7 +78,7 @@ alloy-sol-types = "0.8"
 alloy-primitives = "0.8"
 
 # Auth
-jsonwebtoken = "9"
+jsonwebtoken = "11"
 argon2 = "0.5"
 
 # UUID
