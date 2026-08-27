@@ -34,10 +34,10 @@ tokio-stream = { version = "0.1", features = ["sync"] }
 futures = "0.3"
 
 # Database ORM
-sea-orm = { version = "1.0", features = ["sqlx-postgres", "sqlx-sqlite", "runtime-tokio-rustls", "macros"] }
-sea-orm-migration = "1.0"
+sea-orm = { version = "1.1", features = ["sqlx-postgres", "sqlx-sqlite", "runtime-tokio-rustls", "macros"] }
+sea-orm-migration = "1.1"
 migration = { path = "migration" }
-sqlx = { version = "0.7", features = ["postgres", "runtime-tokio-rustls"] }
+sqlx = { version = "0.8", features = ["postgres", "runtime-tokio-rustls"] }
 
 
 
@@ -126,9 +126,9 @@ async-stream = "0.3.6"
 nix = { version = "0.29", features = ["fs"] }
 
 # AWS KMS (envelope encryption) + S3 (R2 logo storage)
-aws-config = { version = "1", features = ["behavior-version-latest"] }
-aws-sdk-kms = "1"
-aws-sdk-s3 = "1"
+aws-config = { version = "1", default-features = false, features = ["behavior-version-latest", "default-https-client", "rt-tokio"] }
+aws-sdk-kms = { version = "1", default-features = false, features = ["default-https-client", "rt-tokio"] }
+aws-sdk-s3 = { version = "1", default-features = false, features = ["default-https-client", "http-1x", "rt-tokio"] }
 clap = { version = "4", features = ["derive"] }
 
 
@@ -142,5 +142,5 @@ wiremock = "0.6"
 rand_core = "0.9.3"
 proptest = "1"
 rust_decimal_macros = "1"
-testcontainers = "0.23"
-testcontainers-modules = { version = "0.11", features = ["postgres"] }
+testcontainers = "0.27"
+testcontainers-modules = { version = "0.15", features = ["postgres"] }
