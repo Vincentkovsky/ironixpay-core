@@ -1,0 +1,110 @@
+/* Self-hosted Inter font — eliminates render-blocking Google Fonts CSS */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@import "tailwindcss";
+
+/* Enable class-based dark mode for Tailwind v4 */
+@variant dark (&:where(.dark, .dark *));
+
+/* Light theme tokens — aligned with merchant-dashboard */
+@theme {
+  --color-brand-blue: #2563eb;
+  --color-brand-dark: #1e293b;
+  --color-brand-success: #10b981;
+  --color-brand-warning: #f59e0b;
+  --color-brand-error: #ef4444;
+
+  /* Light theme background colors */
+  --color-bg-primary: #F7F7F8;
+  --color-bg-secondary: #FFFFFF;
+  --color-bg-card: #FFFFFF;
+  --color-bg-panel: #F9FAFB;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #F7F7F8;
+  color: #1A1D2B;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Dark mode body */
+html.dark,
+html.dark body {
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+/* Ensure the app container takes full height */
+#app {
+  min-height: 100vh;
+}
+
+@keyframes progress-strip {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  100% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+.animate-progress-strip {
+  animation: progress-strip 0.5s ease-out forwards;
+}
+
+/* Smooth scrollbars matching merchant-dashboard */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Dark mode scrollbar */
+html.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+::selection {
+  background: rgba(37, 99, 235, 0.15);
+  color: #1A1D2B;
+}
+
+html.dark ::selection {
+  background: rgba(37, 99, 235, 0.3);
+  color: #e2e8f0;
+}

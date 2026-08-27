@@ -1,0 +1,26 @@
+# IronixPay
+
+> Multi-chain stablecoin payment gateway for merchants. Accept USDT and USDC payments on 8 blockchain networks (TRON, Solana, BSC, Ethereum, Polygon, Arbitrum, Base, Optimism) with a single API integration.
+
+IronixPay provides a Stripe-like developer experience for crypto payments: create a checkout session via API, redirect customers to a hosted payment page, and receive webhook notifications on payment completion. Funds are automatically swept to your treasury with built-in AML screening.
+
+## Docs
+
+- [Quick Start](https://ironixpay.com/guide/quickstart.html): Get started in 5 minutes — create your first checkout session
+- [Integration Guide](https://ironixpay.com/guide/integration.html): Full integration walkthrough with SDK embed mode and redirect mode
+- [Checkout Sessions](https://ironixpay.com/guide/checkout.html): Create, query, and manage payment sessions
+- [Supported Networks](https://ironixpay.com/guide/networks.html): All 7 supported blockchain networks with contract addresses and confirmation times
+- [Webhooks](https://ironixpay.com/guide/webhooks.html): Receive real-time payment notifications with HMAC-SHA256 signature verification
+- [Payouts](https://ironixpay.com/guide/payouts.html): Withdraw merchant balance to any on-chain address
+- [Authentication](https://ironixpay.com/guide/authentication.html): API key management (sk_live_ / sk_test_ prefixes)
+- [Error Handling](https://ironixpay.com/guide/errors.html): Stripe-style error codes and troubleshooting
+- [Idempotency](https://ironixpay.com/guide/idempotency.html): Safe retry patterns with idempotency keys
+- [Payment Exceptions](https://ironixpay.com/guide/exceptions.html): Handle edge cases — late payments, underpayments, wrong tokens
+- [Testing](https://ironixpay.com/guide/testing.html): Sandbox environment with TRON Nile testnet
+- [Pricing](https://ironixpay.com/pricing.html): Fee structure — 0.5% standard deposit fee, custom enterprise rates, and flat withdrawal fees per chain
+- [Live Demo](https://ironixpay.com/demo.html): Try a live checkout session
+
+## Optional
+
+- [Terms of Service](https://ironixpay.com/terms.html)
+- [Privacy Policy](https://ironixpay.com/privacy.html)

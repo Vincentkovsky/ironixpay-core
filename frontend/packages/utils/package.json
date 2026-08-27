@@ -1,0 +1,15 @@
+{
+    "name": "@ironix-pay/utils",
+    "private": true,
+    "version": "0.0.0",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "typescript": "~5.6.2",
+        "vite": "^6.0.5"
+    }
+}

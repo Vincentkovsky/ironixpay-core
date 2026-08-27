@@ -1,0 +1,41 @@
+# Build output
+target/
+**/target/
+node_modules/
+**/dist/
+*.tsbuildinfo
+backend/frontend/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+!.env.*.template
+chains.*.toml
+!backend/chains.toml
+!backend/chains.*.toml.template
+
+# Tool caches
+.cache/
+.wrangler/
+**/.vitepress/cache/
+**/.vitepress/dist/
+
+# IDE and operating system files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs, databases, and backups
+*.log
+pgdata/
+logs/
+backups/
+
+# Generated packages
+*.zip
+*.tar.gz

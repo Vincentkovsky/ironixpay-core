@@ -1,0 +1,50 @@
+{
+    "name": "@ironix-pay/sdk",
+    "version": "0.2.0",
+    "description": "IronixPay Embedded Checkout SDK",
+    "main": "dist/ironix-pay.umd.js",
+    "module": "dist/ironix-pay.mjs",
+    "types": "dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/ironix-pay.mjs",
+            "require": "./dist/ironix-pay.umd.js"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "vite build && tsc --emitDeclarationOnly --outDir dist",
+        "dev": "vite build --watch"
+    },
+    "devDependencies": {
+        "typescript": "~5.6.2",
+        "vite": "^6.0.5"
+    },
+    "keywords": [
+        "ironixpay",
+        "checkout",
+        "payment",
+        "crypto",
+        "usdt",
+        "stablecoin",
+        "tron",
+        "blockchain",
+        "web3",
+        "embedded-checkout",
+        "sdk"
+    ],
+    "license": "Apache-2.0",
+    "author": "IronixPay",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Vincentkovsky/ironixpay-core.git",
+        "directory": "frontend/packages/sdk"
+    },
+    "homepage": "https://ironixpay.com",
+    "bugs": {
+        "url": "https://github.com/Vincentkovsky/ironixpay-core/issues"
+    }
+}

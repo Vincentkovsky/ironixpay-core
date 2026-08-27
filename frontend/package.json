@@ -1,0 +1,15 @@
+{
+    "name": "ironix-pay-monorepo",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "build": "pnpm -r build",
+        "dev": "pnpm -r --parallel --filter '!@ironix-pay/sdk' dev",
+        "dev:all": "pnpm -r --parallel dev",
+        "lint": "pnpm -r lint"
+    },
+    "devDependencies": {
+        "typescript": "^5.0.0",
+        "vue-eslint-parser": "^10.2.0"
+    }
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#2563eb"/>
+  <text x="200" y="208" text-anchor="middle"
+        font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+        font-size="50" fill="#ffffff">
+    <tspan font-weight="700">Ironix</tspan><tspan font-weight="400">Pay</tspan>
+  </text>
+</svg>

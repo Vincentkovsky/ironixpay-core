@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IronixPay SDK Test</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card h2 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 16px;
+        }
+
+        #checkout-container {
+            min-height: 500px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .log {
+            background: #0d1117;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .log-entry {
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .log-entry.success {
+            color: #4ade80;
+        }
+
+        .log-entry.error {
+            color: #f87171;
+        }
+
+        .log-entry.info {
+            color: #60a5fa;
+        }
+
+        .log-entry.warning {
+            color: #fbbf24;
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        input,
+        button {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+        }
+
+        input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        button {
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status.ready {
+            background: #22c55e;
+        }
+
+        .status.waiting {
+            background: #f59e0b;
+        }
+
+        .status.error {
+            background: #ef4444;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>IronixPay SDK Test Page</h1>
+
+        <div class="card">
+            <h2>Configuration</h2>
+            <div class="controls">
+                <input type="text" id="session-id" placeholder="Enter Session ID (e.g., demo)">
+                <button id="mount-btn">Mount Checkout</button>
+                <button id="unmount-btn" disabled>Unmount</button>
+            </div>
+            <p>Status: <span id="sdk-status" class="status waiting">Waiting</span></p>
+        </div>
+
+        <div class="card">
+            <h2>Checkout Element</h2>
+            <div id="checkout-container"></div>
+        </div>
+
+        <div class="card">
+            <h2>Event Log</h2>
+            <div id="event-log" class="log">
+                <div class="log-entry info">SDK Test Page Loaded</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import SDK (adjust path based on build output)
+        import { IronixPay } from './dist/ironix-pay.mjs';
+
+        const log = (message, type = 'info') => {
+            const logEl = document.getElementById('event-log');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logEl.appendChild(entry);
+            logEl.scrollTop = logEl.scrollHeight;
+        };
+
+        const updateStatus = (status, className) => {
+            const statusEl = document.getElementById('sdk-status');
+            statusEl.textContent = status;
+            statusEl.className = `status ${className}`;
+        };
+
+        // Initialize SDK
+        const ironixPay = new IronixPay({
+            publicKey: 'pk_test_demo',
+            environment: 'sandbox',
+            // Use localhost for development
+            checkoutUrl: 'http://localhost:3001'
+        });
+
+        log(`SDK initialized (v${ironixPay.version})`, 'success');
+
+        let element = null;
+
+        document.getElementById('mount-btn').addEventListener('click', () => {
+            const sessionId = document.getElementById('session-id').value || 'demo';
+
+            if (element) {
+                element.unmount();
+            }
+
+            log(`Creating payment element for session: ${sessionId}`);
+
+            element = ironixPay.createPaymentElement({
+                sessionId: sessionId,
+                theme: 'dark',
+                locale: 'en',
+                style: {
+                    width: '100%',
+                    height: '500px',
+                    borderRadius: '12px'
+                }
+            });
+
+            // Register event handlers
+            element.on('ready', () => {
+                log('✅ Checkout Ready', 'success');
+                updateStatus('Ready', 'ready');
+            });
+
+            element.on('payment_success', (result) => {
+                log(`🎉 Payment Success! Session: ${result.sessionId}, Status: ${result.status}`, 'success');
+                console.log('Payment Result:', result);
+            });
+
+            element.on('payment_expired', (data) => {
+                log(`⏰ Payment Expired - Session: ${data.sessionId}`, 'warning');
+            });
+
+            element.on('payment_detected', (data) => {
+                log(`🔍 Payment Detected - Amount: ${data.amountReceived}`, 'info');
+            });
+
+            element.on('error', (err) => {
+                log(`❌ Error: ${err.code} - ${err.message}`, 'error');
+                updateStatus('Error', 'error');
+            });
+
+            element.on('resize', (data) => {
+                log(`📐 Resize: ${data.height}px`, 'info');
+            });
+
+            // Mount to container
+            element.mount('#checkout-container');
+            log('Element mounted to #checkout-container');
+
+            document.getElementById('mount-btn').disabled = true;
+            document.getElementById('unmount-btn').disabled = false;
+        });
+
+        document.getElementById('unmount-btn').addEventListener('click', () => {
+            if (element) {
+                element.unmount();
+                element = null;
+                log('Element unmounted', 'warning');
+                updateStatus('Waiting', 'waiting');
+            }
+            document.getElementById('mount-btn').disabled = false;
+            document.getElementById('unmount-btn').disabled = true;
+        });
+    </script>
+</body>
+
+</html>

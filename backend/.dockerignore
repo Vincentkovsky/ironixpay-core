@@ -1,0 +1,11 @@
+target/
+.git/
+.env*
+/*.md
+.docs/
+frontend/
+scripts/
+logs/
+backups/
+docker-compose*.yml
+Caddyfile

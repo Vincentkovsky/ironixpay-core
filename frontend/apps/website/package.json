@@ -1,0 +1,21 @@
+{
+    "name": "ironixpay-website",
+    "version": "1.0.0",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "predev": "node scripts/fetch-openapi.mjs",
+        "dev": "vitepress dev",
+        "fetch-openapi": "node scripts/fetch-openapi.mjs",
+        "prebuild": "npm run fetch-openapi",
+        "build": "vitepress build",
+        "preview": "vitepress preview"
+    },
+    "devDependencies": {
+        "vitepress": "2.0.0-alpha.16",
+        "vue": "^3.5.28"
+    },
+    "dependencies": {
+        "vitepress-openapi": "^0.1.19"
+    }
+}

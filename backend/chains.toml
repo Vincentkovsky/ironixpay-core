@@ -1,0 +1,20 @@
+# Chain Configuration — Local Development (TRON Nile + Solana Devnet)
+#
+# This file is loaded automatically at startup (default: chains.toml).
+# Override path via CHAINS_CONFIG_PATH env var.
+
+[chains.TRON]
+rpc_url = "https://nile.trongrid.io"
+outbound_fee = 1500000          # 1.5 USDT
+
+[chains.TRON.gas_sponsor]
+account_index = 0
+path_index = 1
+
+# ── Solana Devnet ────────────────────────────────────────────────────────────
+# Uses the same test mnemonic as TRON (shared HD seed).
+# Treasury HD-derived at m/44'/501'/0'/0' (hardcoded in code, matching TRON/EVM pattern)
+# Token mint addresses + decimals are hardcoded in ChainConfig (network.rs)
+
+[solana]
+rpc_url = "https://api.devnet.solana.com"
