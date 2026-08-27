@@ -95,7 +95,7 @@ tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 
 # Error Tracking
-sentry = { version = "0.46.2", features = ["tracing", "tower", "tower-http"] }
+sentry = { version = "0.47.0", features = ["tracing", "tower", "tower-http"] }
 
 # Metrics (Prometheus)
 axum-prometheus = "0.7"
