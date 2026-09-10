@@ -18,11 +18,11 @@ path = "src/main.rs"
 
 [dependencies]
 # Web Framework
-axum = { version = "0.7", features = ["macros", "ws"] }
-axum-extra = { version = "0.9", features = ["typed-header", "multipart"] }
-tower = "0.4"
-tower-http = { version = "0.5", features = ["cors", "trace", "limit"] }
-tower_governor = { version = "0.5.0", features = ["axum"] }
+axum = { version = "0.8", features = ["macros", "ws"] }
+axum-extra = { version = "0.12", features = ["typed-header", "multipart"] }
+tower = "0.5"
+tower-http = { version = "0.6", features = ["cors", "trace", "limit"] }
+tower_governor = { version = "0.8.0", features = ["axum"] }
 
 # API Documentation
 utoipa = { version = "5", features = ["axum_extras"] }
@@ -34,8 +34,8 @@ tokio-stream = { version = "0.1", features = ["sync"] }
 futures = "0.3"
 
 # Database ORM
-sea-orm = { version = "1.1", features = ["sqlx-postgres", "sqlx-sqlite", "runtime-tokio-rustls", "macros"] }
-sea-orm-migration = "1.1"
+sea-orm = { version = "2.0", features = ["sqlx-postgres", "sqlx-sqlite", "runtime-tokio-rustls", "macros"] }
+sea-orm-migration = "2.0"
 migration = { path = "migration" }
 sqlx = { version = "0.8", features = ["postgres", "runtime-tokio-rustls"] }
 
@@ -45,47 +45,47 @@ sqlx = { version = "0.8", features = ["postgres", "runtime-tokio-rustls"] }
 # Serialization
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-toml = "0.8"
+toml = "1.1"
 csv = "1"
 
 # Crypto
-sha2 = "0.10"
-aes-gcm = "0.10"
-base64 = "0.22"
-hmac = "0.12"
+sha2 = "0.11"
+aes-gcm = "0.11"
+base64 = "0.23"
+hmac = "0.13"
 hex = "0.4"
-totp-rs = { version = "5", features = ["gen_secret", "otpauth"] }  # RFC 6238 TOTP
+totp-rs = { version = "6", features = ["gen_secret", "otpauth"] }  # RFC 6238 TOTP
 bip32 = { version = "0.5", features = ["bip39", "secp256k1"] }
 bip39 = "2.0"
 bitcoin = "0.32"
-sha3 = "0.10"
-k256 = { version = "0.13", features = ["ecdsa"] }
+sha3 = "0.12"
+k256 = { version = "0.14", features = ["ecdsa"] }
 bs58 = { version = "0.5", features = ["check"] }
 zeroize = { version = "1", features = ["derive"] }
-secrecy = { version = "0.8", features = ["serde"] }
-ed25519-dalek = { version = "2", features = ["zeroize"] }
+secrecy = { version = "0.10", features = ["serde"] }
+ed25519-dalek = { version = "3", features = ["zeroize"] }
 slip10_ed25519 = "0.1"
 
 # Solana SDK — transaction building, instruction construction, ComputeBudget
 # default-features = false excludes keypair/signer/seed-phrase (we use our own TransactionSigner)
-solana-sdk = { version = "2", default-features = false }
+solana-sdk = { version = "4", default-features = false }
 spl-token = { version = "9", default-features = false, features = ["no-entrypoint"] }
 spl-associated-token-account = { version = "8", default-features = false, features = ["no-entrypoint"] }
-bincode = "1"
+bincode = "3"
 
 # EVM / ABI
-alloy-sol-types = "0.8"
-alloy-primitives = "0.8"
+alloy-sol-types = "1.6"
+alloy-primitives = "1.7"
 
 # Auth
-jsonwebtoken = "9"
-argon2 = "0.5"
+jsonwebtoken = "11"
+argon2 = "0.6"
 
 # UUID
 uuid = { version = "1", features = ["v4", "v7", "serde"] }
 
 # Random
-rand = "0.8"
+rand = "0.10"
 
 # Time
 chrono = { version = "0.4", features = ["serde"] }
@@ -95,13 +95,13 @@ tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 
 # Error Tracking
-sentry = { version = "0.46.2", features = ["tracing", "tower", "tower-http"] }
+sentry = { version = "0.49.2", features = ["tracing", "tower", "tower-http"] }
 
 # Metrics (Prometheus)
-axum-prometheus = "0.7"
+axum-prometheus = "0.10"
 
 # Error handling
-thiserror = "1"
+thiserror = "2"
 anyhow = "1"
 async-trait = "0.1"
 
@@ -109,21 +109,21 @@ async-trait = "0.1"
 dotenvy = "0.15"
 
 # HTTP Client (for webhooks and Tron API)
-reqwest = { version = "0.12", features = ["json"] }
-reqwest-middleware = { version = "0.4", features = ["json"] }
-reqwest-retry = "0.7"
+reqwest = { version = "0.13", features = ["json"] }
+reqwest-middleware = { version = "0.5", features = ["json"] }
+reqwest-retry = "0.9"
 tokio-util = { version = "0.7.18", features = ["rt", "io", "io-util", "codec"] }
 regex = "1.12.2"
 rust_decimal = { version = "1.40.0", features = ["serde"] }
-validator = { version = "0.20.0", features = ["derive"] }
-ts-rs = { version = "11.1.0", features = ["uuid-impl", "chrono-impl", "serde-compat", "format", "no-serde-warnings"] }
+validator = { version = "0.21.0", features = ["derive"] }
+ts-rs = { version = "12.0.1", features = ["uuid-impl", "chrono-impl", "serde-compat", "format", "no-serde-warnings"] }
 dashmap = "6"
 tracing-appender = "0.2.4"
 url = "2.5.8"
 lazy_static = "1.5.0"
 scopeguard = "1"
 async-stream = "0.3.6"
-nix = { version = "0.29", features = ["fs"] }
+nix = { version = "0.31", features = ["fs"] }
 
 # AWS KMS (envelope encryption) + S3 (R2 logo storage)
 aws-config = { version = "1", default-features = false, features = ["behavior-version-latest", "default-https-client", "rt-tokio"] }
@@ -134,12 +134,12 @@ clap = { version = "4", features = ["derive"] }
 
 [dev-dependencies]
 tokio-test = "0.4"
-axum-test = "15"
-tower = { version = "0.4", features = ["util"] }
-mockall = "0.12"
+axum-test = "21"
+tower = { version = "0.5", features = ["util"] }
+mockall = "0.15"
 tempfile = "3"
 wiremock = "0.6"
-rand_core = "0.9.3"
+rand_core = "0.10.1"
 proptest = "1"
 rust_decimal_macros = "1"
 testcontainers = "0.27"
