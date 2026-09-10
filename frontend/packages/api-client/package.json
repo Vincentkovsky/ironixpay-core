@@ -12,7 +12,7 @@
         "axios": "^1.20.0"
     },
     "devDependencies": {
-        "typescript": "~5.6.3",
-        "vite": "^6.4.3"
+        "typescript": "~7.0.2",
+        "vite": "^8.2.2"
     }
 }
